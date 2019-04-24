@@ -10,6 +10,7 @@ Functions including:
 5. Finding factorial
 6. Check if a Number is Positive, Negative or 0
 7. Find Sum of Natural Numbers Using Recursion
+
 *Advanced functions*
 1. Vector operations
 2. Trigonometric functions
