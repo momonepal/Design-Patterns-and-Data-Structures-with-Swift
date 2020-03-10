@@ -1,19 +1,18 @@
 import Foundation
 
-class Node{
-  var element : Int
-  var nextNode : Node?
+class Node<T : Equatable>{
+  var element : T
+  var nextNode : Node<T>?
   //var tailNode : Node?
-
-  init(element : Int) {
+  init(element : T) {
     self.element = element
   }
 }
 
-class LinkedList {
-  var head : Node?
+class LinkedList<T : Equatable> {
+    var head : Node<T>?
     
-  var tail : Node? {
+  var tail : Node<T>?{
     guard  var node = head else{
         return nil
     }
@@ -27,10 +26,10 @@ class LinkedList {
   init() {
     }
 
-    func insert(element : Int) {
+    func insert(element : T) {
     let newNode = Node(element: element)
     if head?.element == nil {
-      head = newNode
+        head = newNode
     }
     else {
       var testNode = head!
@@ -56,19 +55,19 @@ class LinkedList {
     }
    }
   
-  var firstElement : Int? {
+  var firstElement : T? {
     get {
       return head?.element
     }
   }
 
-  var lastElement : Int? {//using tail pointer
+  var lastElement : T? {//using tail pointer
     get {
       return tail?.element
     }
   }
 
-  var lastElement2 : Int? { //using only head  pointer
+  var lastElement2 : T? { //using only head  pointer
     get {
       var testNode = head
       while testNode?.nextNode != nil {
@@ -95,7 +94,7 @@ class LinkedList {
     }
   }
 
-  func insertAtHead(element : Int) {
+  func insertAtHead(element : T) {
        let newNode = Node(element: element)
        if head?.element == nil {
          head = newNode
@@ -106,7 +105,7 @@ class LinkedList {
        }
     }
 
-  func insertAtTail(element : Int) {
+  func insertAtTail(element : T) {
      let newNode = Node(element: element)
      if head?.element == nil {
        head = newNode
@@ -136,11 +135,11 @@ class LinkedList {
         }
     }
     
-    func toArray() -> [Int] {
-      var array = [Int]()
+    func toArray() -> [T] {
+      var array = [T]()
       var testNode = head!
       if head != nil {
-          array.append(testNode.element)
+        array.append(testNode.element)
       }
       while testNode.nextNode != nil {
           testNode = testNode.nextNode!
@@ -162,16 +161,16 @@ class LinkedList {
         }
     }
 
-    func search(element : Int) -> Int? { //returns index counting from 0
+    func search(element : T) -> Int? { //returns index counting from 0
         var counter = 1
         var indexx : Int? = nil
         var testNode = head
-        if testNode?.element == element {
-            indexx = 0            
+        if testNode!.element == element {
+            indexx = 0
         }
         while testNode?.nextNode != nil {
             testNode = testNode?.nextNode!
-            if testNode?.element == element {
+            if testNode!.element == element {
                 let indexx = counter
                 return indexx
             }
@@ -181,7 +180,7 @@ class LinkedList {
         return indexx //returns nil if searched elemnt doesnt exist
     }
     
-    func inserAt(index : Int,element : Int ){
+    func inserAt(index : Int,element : T ){
         let newNode = Node(element: element)
          if head?.element == nil {
            head = newNode
@@ -220,33 +219,20 @@ class LinkedList {
         }
      }
             
-            func searchForAll(element : Int) -> [Int] {
+            func searchForAll(element : T) -> [Int] {
                 var counter = [Int]()
                 var index = 0
                 var testNode = head
                 while testNode?.nextNode != nil {
-                    if testNode?.element == element {
+                    if testNode!.element == element {
                         counter.append(index)
                     }
                     index += 1
                     testNode = testNode?.nextNode!
                 }
-                if testNode?.element == element {
+                if testNode!.element == element {
                 counter.append(index)
                 }
                 return counter
-            }
-            
-        
-        
-        
-        
+            }        
 }
-        
-    
-    
-
-
-
-
-
