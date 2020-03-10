@@ -3,7 +3,7 @@ import Foundation
 class Node{
   var element : Int
   var nextNode : Node?
-  var tailNode : Node?
+  //var tailNode : Node?
 
   init(element : Int) {
     self.element = element
@@ -12,8 +12,18 @@ class Node{
 
 class LinkedList {
   var head : Node?
-  var tail : Node?
-
+    
+  var tail : Node? {
+    guard  var node = head else{
+        return nil
+    }
+    while let nextNode = node.nextNode {
+        node = nextNode
+    }
+    return node
+    }
+    
+    
   init() {
     }
 
@@ -28,10 +38,11 @@ class LinkedList {
         testNode = testNode.nextNode!
       }
       testNode.nextNode = newNode
+      //tail = newNode
     }
     }
     
-    func printLinkedList(){
+    func printLinkedList(){ //prints linked list
     var testNode = head
     while testNode?.nextNode != nil {
       if let nodeToPrint = testNode?.element {
@@ -51,7 +62,13 @@ class LinkedList {
     }
   }
 
-  var lastElement : Int? {
+  var lastElement : Int? {//using tail pointer
+    get {
+      return tail?.element
+    }
+  }
+
+  var lastElement2 : Int? { //using only head  pointer
     get {
       var testNode = head
       while testNode?.nextNode != nil {
@@ -60,6 +77,8 @@ class LinkedList {
         return testNode?.element
     }
   }
+    
+  
 
   var length : Int {
     get {
@@ -105,7 +124,7 @@ class LinkedList {
     }
 
    func removeFromTail() {
-      if head?.element == nil {
+      if head?.nextNode == nil {   // fixed the error
           head = nil
         }
       else {
@@ -161,9 +180,73 @@ class LinkedList {
         }
         return indexx //returns nil if searched elemnt doesnt exist
     }
-
-
+    
+    func inserAt(index : Int,element : Int ){
+        let newNode = Node(element: element)
+         if head?.element == nil {
+           head = newNode
+        }
+        else {
+            if index == 0 {
+                newNode.nextNode = head
+                head = newNode
+            }
+            else {
+                var testNode = head!
+                for _ in 1..<index {
+                    testNode = testNode.nextNode!
+                }
+                newNode.nextNode = testNode.nextNode
+                testNode.nextNode = newNode
+              }
+        }
+    }
+    
+    func removeFrom(index : Int) {
+        if head?.nextNode == nil {
+            head = nil
+        }
+        else {
+            if index == 0 {
+                 head = head?.nextNode
+            }
+            else {
+                var testNode = head!
+                for _ in 1..<index {
+                    testNode = testNode.nextNode!
+                }
+                testNode.nextNode = testNode.nextNode?.nextNode
+              }
+        }
+     }
+            
+            func searchForAll(element : Int) -> [Int] {
+                var counter = [Int]()
+                var index = 0
+                var testNode = head
+                while testNode?.nextNode != nil {
+                    if testNode?.element == element {
+                        counter.append(index)
+                    }
+                    index += 1
+                    testNode = testNode?.nextNode!
+                }
+                if testNode?.element == element {
+                counter.append(index)
+                }
+                return counter
+            }
+            
+        
+        
+        
+        
 }
+        
+    
+    
+
+
 
 
 
