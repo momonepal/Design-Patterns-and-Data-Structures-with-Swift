@@ -33,9 +33,9 @@ class LinkedList<T : Equatable> {
   init() {
     }
 
-    func insert(element : T) {
+    func insert(element : T) { //creates nodes
     let newNode = Node(element: element)
-    if head?.element == nil {
+    if head?.element == nil { //checks if Linkedlist is empty
         head = newNode
     }
     else {
@@ -62,13 +62,13 @@ class LinkedList<T : Equatable> {
     }
    }
   
-  var firstElement : T? {
+  var firstElement : T? { //prints first element
     get {
       return head?.element
     }
   }
 
-  var lastElement : T? {//using tail pointer
+  var lastElement : T? {// prints last element using tail pointer
     get {
       return tail?.element
     }
@@ -86,7 +86,7 @@ class LinkedList<T : Equatable> {
     
   
 
-  var length : Int {
+  var length : Int { //prints length of the node
     get {
       var counter = 0
       if head?.element != nil{
@@ -101,7 +101,7 @@ class LinkedList<T : Equatable> {
     }
   }
 
-  func insertAtHead(element : T) {
+  func insertAtHead(element : T) { //inserts a node at head
        let newNode = Node(element: element)
        if head?.element == nil {
          head = newNode
@@ -113,7 +113,7 @@ class LinkedList<T : Equatable> {
        }
     }
 
-  func insertAtTail(element : T) {
+  func insertAtTail(element : T) { //inserts a node at tail
      let newNode = Node(element: element)
      if head?.element == nil {
        head = newNode
@@ -128,13 +128,13 @@ class LinkedList<T : Equatable> {
     }
    }
        
-    func removeFromHead() {
+    func removeFromHead() { //removes node from head
       //head?.nextNode?.nextNode?.prevNode = head?.nextNode
       head = head?.nextNode
     }
 
-   func removeFromTail() {
-      if head?.nextNode == nil {   // fixed the error
+   func removeFromTail() { // removes node from tail
+      if head?.nextNode == nil {
           head = nil
         }
       else {
@@ -146,7 +146,7 @@ class LinkedList<T : Equatable> {
         }
     }
     
-    func toArray() -> [T] {
+    func toArray() -> [T] { //linkedlist to array
       var array = [T]()
       var testNode = head!
       if head != nil {
@@ -159,7 +159,7 @@ class LinkedList<T : Equatable> {
       return array
     }
 
-    func append(list : LinkedList) {
+    func append(list : LinkedList) { //appends a linkedlist
         if head?.element == nil{
             head = list.head
         }
@@ -189,10 +189,10 @@ class LinkedList<T : Equatable> {
             
             counter += 1
         }
-        return indexx //returns nil if searched elemnt doesnt exist
+        return indexx //returns nil if searched element doesnt exist
     }
     
-    func inserAt(index : Int,element : T ){
+    func inserAt(index : Int,element : T ){ //inserts node at given index
         let newNode = Node(element: element)
          if head?.element == nil {
            head = newNode
@@ -214,7 +214,7 @@ class LinkedList<T : Equatable> {
         }
     }
     
-    func removeFrom(index : Int) {
+    func removeFrom(index : Int) { //removes a node from given index
         if head?.nextNode == nil {
             head = nil
         }
@@ -233,7 +233,7 @@ class LinkedList<T : Equatable> {
         }
      }
             
-            func searchForAll(element : T) -> [Int] {
+            func searchForAll(element : T) -> [Int] { //searches  for elements and return all index as array
                 var counter = [Int]()
                 var index = 0
                 var testNode = head
