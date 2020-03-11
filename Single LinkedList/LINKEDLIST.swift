@@ -61,13 +61,13 @@ class LinkedList<T : Equatable> {
     }
   }
 
-  var lastElement : T? {//using tail pointer
+  var lastElement2 : T? {//using tail pointer
     get {
       return tail?.element
     }
   }
 
-  var lastElement2 : T? { //using only head  pointer
+  var lastElement : T? { //using only head  pointer
     get {
       var testNode = head
       while testNode?.nextNode != nil {
