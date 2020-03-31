@@ -17,8 +17,9 @@ class HomeworkFunctions{
                 case "[","(","{":
                     stack.push(element: String(bracket))
                 case "]",")","}":
-                    if stack.isEmpty || stack.pop() == nil || (bracket == "}" && stack.peek() != "{") || (bracket == "]" && stack.peek() != "[") || (bracket == ")" && stack.peek() != "(")  {
+                    if stack.isEmpty || (bracket == "}" && stack.peek() != "{") || (bracket == "]" && stack.peek() != "[") || (bracket == ")" && stack.peek() != "(")  {
                         return false
+                       
                     }
                     stack.pop()
             default: break
@@ -28,23 +29,33 @@ class HomeworkFunctions{
             return true
         }else{
             return false
+            
             }
     }
     
     //Level 2
     
     func isAPalindrome(_ string : String ) -> Bool{
+        var array : [String] = []
         let stack = Stack<String>()
         let queue = Queue<String>()
-        for character in string.replacingOccurrences(of: " ", with: "").lowercased(){
-            stack.push(element : String(character))
-            queue.enqueue(element: String(character))
-        }
-        for _ in string.replacingOccurrences(of: " ", with: ""){
-            if stack.pop() == queue.dequeue() {}
-            else{
-                return false
+        for character in string.lowercased(){
+            if "abcdefghijklmnopqrstuvwxyz".contains(character){
+                array.append(String(character))
+                stack.push(element : String(character))
+                queue.enqueue(element: String(character))
             }
+        }
+        if array.count != 0{
+            for _ in array{
+                if stack.pop() == queue.dequeue(){}
+                else{
+                return false
+                }
+            }
+        }else{
+            print("String is empty")
+            return false
         }
         return true
     }

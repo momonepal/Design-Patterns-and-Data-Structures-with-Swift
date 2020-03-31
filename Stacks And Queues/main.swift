@@ -1,6 +1,13 @@
+//
 //  main.swift
 //  StacksAndQueues
-//  Created by Mohit 
+//
+//  Created by Mohit on 3/26/20.
 //  Copyright © 2020 Mohit. All rights reserved.
 //
-// ***All the test cases will be posted here*
+import Foundation
+
+
+var ae = HomeworkFunctions()
+print(ae.hasCorrectDelimiters("( a < ( b[ 3 ] + c ) "))
+print(ae.isAPalindrome("akaka"))
