@@ -9,5 +9,12 @@ A tree will have the same inorder and oreorder traversals if all the left sub tr
               null    9
 
 
-2) Design an algorithm (pseudocode or prose) to check if a binary tree is a binary search tree
+2) Design an algorithm (pseudocode or prose) to check if a binary tree is a binary search tree.
 
+array = tree.elements         |  return the elements of binary tree in a inorder traversal in an array
+if array == array.sorted()    |  check if the array is sorted, must be sorted if it is BST
+  return true                   
+else
+  return false
+
+3) Design an algorithm (pseudocode or prose) to check if a binary tree is perfectly balanced (smallest height possible for the number of nodes)
