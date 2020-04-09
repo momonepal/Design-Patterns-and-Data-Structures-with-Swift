@@ -7,3 +7,7 @@ A tree will have the same inorder and oreorder traversals if all the left sub tr
                   7
                  /  \
               null    9
+
+
+2) Design an algorithm (pseudocode or prose) to check if a binary tree is a binary search tree
+
