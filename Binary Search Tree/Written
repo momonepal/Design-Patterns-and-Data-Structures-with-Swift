@@ -17,4 +17,10 @@ if array == array.sorted()    |  check if the array is sorted, must be sorted if
 else
   return false
 
-3) Design an algorithm (pseudocode or prose) to check if a binary tree is perfectly balanced (smallest height possible for the number of nodes)
+3) Design an algorithm (pseudocode or prose) to check if a binary tree is perfectly balanced (smallest height possible for the 
+number of nodes)
+
+if  node is nil, return true
+get height of left subtree and right subtree
+check if the difference between the height of the left subtree and the height of the right subtree is less than or equal to 1
+recurse to find out if the left subtree is balanced and the right subtree is balanced
