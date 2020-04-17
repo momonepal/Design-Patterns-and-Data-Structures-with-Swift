@@ -1,10 +1,6 @@
-//
-//  File.swift
 //  Red Black Tree
-//
-//  Created by Mohit on 4/17/20.
+//  Created by Mohit
 //  Copyright © 2020 Mohit. All rights reserved.
-//
 
 import Foundation
 
@@ -12,7 +8,7 @@ class RBNode<T : Comparable>{
   var element : T
   var leftChild : RBNode<T>?
   var rightChild : RBNode<T>?
-  var color = "black"
+  var color = "red"
     
   init(element : T) {
     self.element = element
@@ -76,13 +72,20 @@ class RBNode<T : Comparable>{
    }
     
 
-   func colorFlip() {
-     self.color = "red"
-     self.leftChild?.color = "black"
-     self.rightChild?.color = "black"
+  func colorFlip() {
+    if self.leftChild != nil && self.rightChild != nil {
+      //if both children are red, flip color
+        if self.rightChild!.color == "red" && self.leftChild!.color == "red"{
+            self.color = "red"
+            self.rightChild?.color = "black"
+            self.leftChild?.color = "black"
+        }
+        else {
+            self.leftChild!.colorFlip()
+            self.rightChild!.colorFlip()
+        }
+    }
    }
-    
-    
     
     
 }
@@ -90,6 +93,13 @@ class RBNode<T : Comparable>{
 
 class RedBlackTree<T : Comparable>{
     var root : RBNode<T>?
+    
+    
+    private func balanceTree() {
+        self.root?.rotateRight()
+        self.root?.rotateLeft()
+        self.root?.colorFlip()
+    }
     
     //gives height of the tree, with root included
     var height : Int {
@@ -104,7 +114,7 @@ class RedBlackTree<T : Comparable>{
         return self.root == nil
     }
     
-    //gives the total nodes/elemnts of BST
+    //gives the total nodes/elemnts of RBT
     var size : Int {
         guard !self.isEmpty else {
             return 0
@@ -125,15 +135,18 @@ class RedBlackTree<T : Comparable>{
             self.insert(element: element)
         }
     }
-    //inserts element to the BST
+    //inserts element to the RBT
     func insert(element: T) {
         let node = RBNode(element: element)
             if let root = self.root{
                 self.insertt(root, node)
             } else {
                 self.root = node
+                self.root?.color = "black"
             }
-        }
+        self.balanceTree()
+    }
+    
     private func insertt(_ root: RBNode<T>, _ node: RBNode<T>) {
                  if root.element > node.element {
                      if let leftChild = root.leftChild {
@@ -150,7 +163,7 @@ class RedBlackTree<T : Comparable>{
                  }
              }
     
-    //searches for element in BST and returns it
+    //searches for element in RBT and returns it
     func search( element : T ) -> T?{
         return self.search(self.root, element)
         }
@@ -168,7 +181,7 @@ class RedBlackTree<T : Comparable>{
             }
         }
     
-    //checks if the BST contains the element and returns Bool
+    //checks if the RBT contains the element and returns Bool
     func contains( element : T ) -> Bool{
         if self.search(self.root, element) == element{
             return true
@@ -201,7 +214,7 @@ class RedBlackTree<T : Comparable>{
         return array
     }
     
-    //delete an element/node from BST
+    //delete an element/node from RBT
     func delete( element : T ){
         var array = self.makeBreadthFirstArray()
         let index = array.firstIndex(of: element)
