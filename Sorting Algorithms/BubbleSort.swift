@@ -1,4 +1,3 @@
-//  BubbleSort.swift
 //  Sorting
 //  Created by Mohit
 //  Copyright © 2020 Mohit. All rights reserved.
@@ -27,7 +26,7 @@ extension Array where Element: Comparable {
         for index in 1..<array.count{
             let temp = array[index]
             var position = index
-            while array[position-1]>temp && position>0 {
+            while position > 0 &&  array[position-1]>temp {
                 array[position] = array[position-1]
                 position -= 1
             }
