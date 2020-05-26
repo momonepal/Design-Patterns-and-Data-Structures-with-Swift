@@ -192,7 +192,7 @@ class LinkedList<T : Equatable> {
         return indexx //returns nil if searched element doesnt exist
     }
     
-    func inserAt(index : Int,element : T ){ //inserts node at given index
+    func insertAt(index : Int,element : T ){ //inserts node at given index
         let newNode = Node(element: element)
          if head?.element == nil {
            head = newNode
