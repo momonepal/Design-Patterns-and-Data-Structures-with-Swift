@@ -1,7 +1,6 @@
 //  Graphs
 //  Created by Mohit
 //  Copyright © 2020 Mohit. All rights reserved.
-
 import Foundation
 
 class ADJlist{
@@ -75,7 +74,7 @@ class Graph {
     private func BFS(firstVertex : Int, secondVertex : Int, marked : [Int], Queue : [Int] )  -> Bool{
         if adj[firstVertex] != nil{
         
-        if (adj[firstVertex]?.contains(secondVertex))! {
+        if (adj[firstVertex]?.contains(secondVertex))!  {
             return true
             }
         else{
@@ -97,5 +96,34 @@ class Graph {
     }
     
     
+    func hasCycle() -> Bool{
+           var boolean = false
+           for a in adj.keys{
+               if verticesAreConnected(firstVertex : a, secondVertex : a){
+                   boolean = true
+               }
+           }
+           return boolean
+        }
+       
+    
+    
 }
+    
+    
+    
+    
+    
+    
+   
+    
+    
+            
+            
+            
+            
+          
+    
+    
+
 
