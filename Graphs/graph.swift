@@ -43,16 +43,24 @@ class Graph {
     }
     
     func neighborsOf( vertex : Int ) -> [Int]{
-        return adj[vertex]!
+        if adj[vertex] != nil{
+            return adj[vertex]!
+        }
+        else {
+            return []
+            }
     }
     
     func verticesAreAdjacent( firstVertex : Int, secondVertex : Int ) -> Bool{
-        if (adj[firstVertex]?.contains(secondVertex))! {
+        if adj[firstVertex] != nil{
+            if (adj[firstVertex]?.contains(secondVertex))! {
             return true
-        }
-        else {
-            return false
-        }
+            }
+            else {
+                return false
+           }
+       }
+        return false
     }
     
     func verticesAreConnected(firstVertex : Int, secondVertex : Int) -> Bool{
@@ -60,23 +68,34 @@ class Graph {
             return true
         }
         else{
-            
+            return BFS(firstVertex: firstVertex, secondVertex: secondVertex, marked : [firstVertex], Queue : [])
+        }
+    }
+    
+    private func BFS(firstVertex : Int, secondVertex : Int, marked : [Int], Queue : [Int] )  -> Bool{
+        if adj[firstVertex] != nil{
+        
+        if (adj[firstVertex]?.contains(secondVertex))! {
+            return true
+            }
+        else{
+            var marked = marked
+            var Queue = Queue
+            for a in adj[firstVertex]!{
+                if !(marked.contains(a)) {
+                    Queue.append(a)
+                    marked.append(a)
+                }
+            }
+            while !Queue.isEmpty {
+                return BFS(firstVertex: Queue.removeFirst() , secondVertex: secondVertex, marked : marked, Queue : Queue)
+            }
+            return false
+        }
         }
         return false
-        
-        
     }
     
     
-    
- 
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
+
