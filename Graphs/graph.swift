@@ -74,10 +74,7 @@ class Graph {
     private func BFS(firstVertex : Int, secondVertex : Int, marked : [Int], Queue : [Int] )  -> Bool{
         if adj[firstVertex] != nil{
         
-        if (adj[firstVertex]?.contains(secondVertex))!  {
-            return true
-            }
-        else{
+        
             var marked = marked
             var Queue = Queue
             for a in adj[firstVertex]!{
@@ -86,11 +83,15 @@ class Graph {
                     marked.append(a)
                 }
             }
+            if (adj[firstVertex]?.contains(secondVertex))!  { // added && !verticesAreConnected(firstVertex : firstVertex, secondVertex : secondVertex) to vertex being connected to itself....didn't work
+            return true
+            }
+            else {
             while !Queue.isEmpty {
                 return BFS(firstVertex: Queue.removeFirst() , secondVertex: secondVertex, marked : marked, Queue : Queue)
             }
+            }
             return false
-        }
         }
         return false
     }
@@ -105,6 +106,10 @@ class Graph {
            }
            return boolean
         }
+    
+    func shortestPathFrom(_ start : Int, to end : Int ) -> [Int]{
+        return []
+    }
        
     
     
