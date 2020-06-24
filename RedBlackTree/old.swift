@@ -145,23 +145,7 @@ class RedBlackTree<T : Comparable>{
         self.balanceTree()
     }
     
-    private func insertt(_ root: RBNode<T>, _ node: RBNode<T>) {
-                 if root.element > node.element {
-                     if let leftChild = root.leftChild {
-                         self.insertt(leftChild, node)
-                     } else {
-                         root.leftChild = node
-                     }
-                 } else {
-                     if let rightChild = root.rightChild {
-                         self.insertt(rightChild, node)
-                     } else {
-                         root.rightChild = node
-                     }
-                 }
-             }
-    
-    //searches for element in RBT and returns it
+    and returns it
     func search( element : T ) -> T?{
         return self.search(self.root, element)
         }
