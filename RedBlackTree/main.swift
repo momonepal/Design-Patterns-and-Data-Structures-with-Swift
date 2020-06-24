@@ -1,5 +1,3 @@
-import Foundation
-
 let a = RedBlackTree<Int>()
 a.insert(element: 4)
 a.insert(element: 7)
@@ -10,7 +8,6 @@ a.insert(element: 6)
 a.insert(element: 10)
 a.insert(element: 2)
 a.insert(element: 9)
-
 
 print(a.makeBreadthFirstArray())
 print(a.height)
