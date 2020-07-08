@@ -7,7 +7,7 @@ a.insert(element: 3)
 a.insert(element: 6)
 a.insert(element: 10)
 a.insert(element: 2)
-a.insert(element: 9)
+a.insert(element: 9) 
 
 print(a.makeBreadthFirstArray())
 print(a.height)
